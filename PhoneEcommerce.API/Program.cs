@@ -85,6 +85,8 @@ app.UseHttpsRedirection();
 
 app.UseCustomException();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
