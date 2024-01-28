@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneEcommerce.Core\PhoneEcommerce.Core.csproj" />
+  </ItemGroup>
+
 </Project>
