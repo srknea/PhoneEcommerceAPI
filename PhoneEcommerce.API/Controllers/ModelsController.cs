@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
 using PhoneEcommerce.Core.Services;
+using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
@@ -17,7 +18,7 @@ namespace PhoneEcommerce.API.Controllers
             _mapper = mapper;
         }
 
-
+        /*
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -29,6 +30,7 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<List<ModelDto>>.Success(200, modelsDto));
 
         }
+        */
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -41,6 +43,7 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<ModelDto>.Success(200, modelDto));
         }
 
+        /*
         [HttpPost]
         public async Task<IActionResult> Save(ModelDto dto)
         {
@@ -51,6 +54,7 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<ModelDto>.Success(201, modelDto));
             // 201 : Oluşturuldu anlamında kullanılır. İşlem başarılı ise 201 döndürülebilir.
         }
+        */
 
         [HttpPut]
         public async Task<IActionResult> Update(ModelDto modelDto)
@@ -68,6 +72,12 @@ namespace PhoneEcommerce.API.Controllers
             await _modelService.RemoveAsync(model);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+        }
+
+        [HttpGet("{modelId}/versions")]
+        public async Task<IActionResult> GetSingleModelByIdWithVersions(int modelId)
+        {
+            return CreateActionResult(await _modelService.GetSingleModelByIdWithVersionAsync(modelId));
         }
 
     }

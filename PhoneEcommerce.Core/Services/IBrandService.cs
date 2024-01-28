@@ -10,6 +10,6 @@ namespace PhoneEcommerce.Core.Services
 {
     public interface IBrandService : IGenericService<Brand>
     {
-        Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int categoryId);
+        Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int brandId);
     }
 }

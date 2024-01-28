@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PhoneEcommerce.Core.Repositories
 {
-    public interface IBrandRepository : IGenericRepository<Brand>
+    public interface IModelRepository : IGenericRepository<Core.Model.Model>
     {
-        Task<Brand> GetSingleBrandByIdWithModelAsync(int brandId);
+        Task<Core.Model.Model> GetSingleModelByIdWithVerisonsAsync(int modelId);
     }
 }

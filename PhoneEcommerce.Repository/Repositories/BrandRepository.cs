@@ -15,9 +15,9 @@ namespace PhoneEcommerce.Repository.Repositories
         {
         }
 
-        public async Task<Brand> GetSingleBrandByIdWithModelAsync(int modelId)
+        public async Task<Brand> GetSingleBrandByIdWithModelAsync(int brandId)
         {
-            return await _context.Brands.Include(x => x.Models).Where(x => x.Id == modelId).SingleOrDefaultAsync(x => x.Id == modelId);
+            return await _context.Brands.Include(x => x.Models).Where(x => x.Id == brandId).SingleOrDefaultAsync(x => x.Id == brandId);
 
         }
     }

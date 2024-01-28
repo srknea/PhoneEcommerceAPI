@@ -26,9 +26,9 @@ namespace PhoneEcommerce.Service.Services
 
         public async Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int brandId)
         {
-            var hasCategory = await _brandRepository.GetByIdAsync(brandId);
+            var hasBrand= await _brandRepository.GetByIdAsync(brandId);
 
-            if (hasCategory == null)
+            if (hasBrand == null)
             {
                 throw new NotFoundException($"Brand with Id '{brandId}' not found");
             }
