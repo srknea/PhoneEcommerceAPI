@@ -14,6 +14,9 @@ namespace PhoneEcommerce.Service.Mapping
         public MapProfile()
         {
             CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Model, ModelDto>().ReverseMap();
+            
+            CreateMap<Brand, BrandWithModelsDto>();
         }
     }
 }

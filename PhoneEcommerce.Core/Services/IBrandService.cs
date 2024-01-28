@@ -1,4 +1,5 @@
-﻿using PhoneEcommerce.Core.Model;
+﻿using PhoneEcommerce.Core.DTOs;
+using PhoneEcommerce.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace PhoneEcommerce.Core.Services
 {
     public interface IBrandService : IGenericService<Brand>
     {
-
+        Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int categoryId);
     }
 }

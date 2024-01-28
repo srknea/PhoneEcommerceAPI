@@ -71,5 +71,11 @@ namespace PhoneEcommerce.API.Controllers
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
+
+        [HttpGet("{brandId}/models")]
+        public async Task<IActionResult> GetSingleBrandByIdWithModels(int brandId)
+        {
+            return CreateActionResult(await _brandService.GetSingleBrandByWithModelAsync(brandId));
+        }
     }
 }
