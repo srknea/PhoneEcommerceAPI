@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PhoneEcommerce.Core.Model;
 using PhoneEcommerce.Core.Repositories;
+using PhoneEcommerce.Core.Services;
 using PhoneEcommerce.Core.UnitOfWork;
 using PhoneEcommerce.Repository;
 using PhoneEcommerce.Repository.Repositories;
 using PhoneEcommerce.Repository.UnitOfWork;
 using PhoneEcommerce.Service.Mapping;
+using PhoneEcommerce.Service.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 

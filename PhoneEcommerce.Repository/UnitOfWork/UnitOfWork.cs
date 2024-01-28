@@ -22,7 +22,7 @@ namespace PhoneEcommerce.Repository.UnitOfWork
         }
 
         // Mümkün oldukça async metotları kullanmaya çalışacağız.
-        public async Task CommmitAsync()
+        public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
         }
