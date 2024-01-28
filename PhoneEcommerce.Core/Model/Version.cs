@@ -12,7 +12,7 @@ namespace PhoneEcommerce.Core.Model
         public decimal Price { get; set; }
         public bool StockStatus { get; set; }
 
-        public Guid ModelId { get; set; }
+        public int ModelId { get; set; }
         public Model Model { get; set; }
 
         public List<Product> Products { get; set; }

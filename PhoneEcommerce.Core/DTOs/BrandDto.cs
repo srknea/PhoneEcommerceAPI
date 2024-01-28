@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhoneEcommerce.Core.Model
+namespace PhoneEcommerce.Core.DTOs
 {
-    public abstract class BaseEntity
+    public class BrandDto : BaseDto
     {
-        public int Id { get; set; }
+        public string BrandName { get; set; }
     }
 }

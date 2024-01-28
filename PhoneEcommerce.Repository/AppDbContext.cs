@@ -18,7 +18,12 @@ namespace PhoneEcommerce.Repository
         {
         }
 
-        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<Core.Model.Version> Versions { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

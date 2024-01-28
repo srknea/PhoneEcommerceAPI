@@ -10,13 +10,7 @@ namespace PhoneEcommerce.Core.Model
     {
         public string Color { get; set; }
 
-        public Guid BrandId { get; set; }
-        public Brand Brand { get; set; }
-
-        public Guid ModelId { get; set; }
-        public Model Model { get; set; }
-        
-        public Guid VersionId { get; set; }
+        public int VersionId { get; set; }
         public Version Version { get; set; }
 
         //public List<OrderItem> OrderItems { get; set; }

@@ -10,7 +10,7 @@ namespace PhoneEcommerce.Core.Model
     {
         public string ModelName { get; set; }
 
-        public Guid BrandId { get; set; }
+        public int BrandId { get; set; }
         public Brand Brand { get; set; }
 
         public List<Version> Versions { get; set; }

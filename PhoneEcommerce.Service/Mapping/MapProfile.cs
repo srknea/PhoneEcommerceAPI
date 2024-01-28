@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using PhoneEcommerce.Core.DTOs;
+using PhoneEcommerce.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace PhoneEcommerce.Service.Mapping
     {
         public MapProfile()
         {
-            
+            CreateMap<Brand, BrandDto>().ReverseMap();
         }
     }
 }
