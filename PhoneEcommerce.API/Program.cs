@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PhoneEcommerce.API.Middlewares;
+using PhoneEcommerce.Core.Configuration;
 using PhoneEcommerce.Core.Model;
 using PhoneEcommerce.Core.Repositories;
 using PhoneEcommerce.Core.Services;
@@ -41,6 +42,8 @@ builder.Services.AddIdentity<AppUser, AppRole>(Opt =>
     Opt.User.RequireUniqueEmail = true; // Email adresi unique olmalý
     Opt.Password.RequireNonAlphanumeric = false; // *? gibi karakterlerin kullanýmýný zorunlu tutma... (Normalde default olarak zorunludur)
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 
 var app = builder.Build();
 
