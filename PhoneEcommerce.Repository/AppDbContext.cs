@@ -18,9 +18,13 @@ namespace PhoneEcommerce.Repository
         {
         }
 
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(modelBuilder);
         }
