@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneEcommerce.API", "PhoneEcommerce.API\PhoneEcommerce.API.csproj", "{6816AE12-D243-4537-9811-D5B32BFEE2FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneEcommerce.Core", "PhoneEcommerce.Core\PhoneEcommerce.Core.csproj", "{E774F84C-CB10-4DEA-8424-B3A6F16D830A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneEcommerce.Repository", "PhoneEcommerce.Repository\PhoneEcommerce.Repository.csproj", "{4700C884-F295-48A7-A976-FA43023EE5B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneEcommerce.Service", "PhoneEcommerce.Service\PhoneEcommerce.Service.csproj", "{6299A20C-97E1-4778-AC35-A7784CACF1B7}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6816AE12-D243-4537-9811-D5B32BFEE2FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6816AE12-D243-4537-9811-D5B32BFEE2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6816AE12-D243-4537-9811-D5B32BFEE2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6816AE12-D243-4537-9811-D5B32BFEE2FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E774F84C-CB10-4DEA-8424-B3A6F16D830A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E774F84C-CB10-4DEA-8424-B3A6F16D830A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E774F84C-CB10-4DEA-8424-B3A6F16D830A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E774F84C-CB10-4DEA-8424-B3A6F16D830A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4700C884-F295-48A7-A976-FA43023EE5B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4700C884-F295-48A7-A976-FA43023EE5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4700C884-F295-48A7-A976-FA43023EE5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4700C884-F295-48A7-A976-FA43023EE5B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6299A20C-97E1-4778-AC35-A7784CACF1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6299A20C-97E1-4778-AC35-A7784CACF1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6299A20C-97E1-4778-AC35-A7784CACF1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6299A20C-97E1-4778-AC35-A7784CACF1B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
