@@ -5,7 +5,7 @@ using PhoneEcommerce.Core.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : CustomBaseController
     {
