@@ -45,6 +45,8 @@ builder.Services.AddIdentity<AppUser, AppRole>(Opt =>
 
 builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
 
+builder.Services.Configure<Client>(builder.Configuration.GetSection("Clients"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
