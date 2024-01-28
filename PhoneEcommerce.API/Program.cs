@@ -6,6 +6,7 @@ using PhoneEcommerce.Core.UnitOfWork;
 using PhoneEcommerce.Repository;
 using PhoneEcommerce.Repository.Repositories;
 using PhoneEcommerce.Repository.UnitOfWork;
+using PhoneEcommerce.Service.Mapping;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
