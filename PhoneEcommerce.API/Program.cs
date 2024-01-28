@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PhoneEcommerce.API.Middlewares;
 using PhoneEcommerce.Core.Model;
 using PhoneEcommerce.Core.Repositories;
 using PhoneEcommerce.Core.Services;
@@ -51,6 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthorization();
 
