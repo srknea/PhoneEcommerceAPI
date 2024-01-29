@@ -8,6 +8,6 @@ namespace PhoneEcommerce.Core.DTOs
 {
     public class ModelWithVersionsDto : ModelDto
     {
-        public List<VersionDto> Models { get; set; }
+        public List<VersionDto> Versions { get; set; }
     }
 }
