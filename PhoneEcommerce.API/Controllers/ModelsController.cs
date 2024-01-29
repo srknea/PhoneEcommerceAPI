@@ -56,10 +56,14 @@ namespace PhoneEcommerce.API.Controllers
         }
         */
 
-        [HttpPut]
-        public async Task<IActionResult> Update(ModelDto modelDto)
+        [HttpPut("{modelId}")]
+        public async Task<IActionResult> Update(int modelId, [FromBody] UpdateModelDto updataModelDto)
         {
-            await _modelService.UpdateAsync(_mapper.Map<Model>(modelDto));
+
+            var model = _mapper.Map<Model>(updataModelDto);
+            model.Id = modelId;
+
+            await _modelService.UpdateAsync(model);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }

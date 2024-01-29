@@ -15,15 +15,15 @@ namespace PhoneEcommerce.Service.Mapping
         {
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Brand, UpdateBrandDto>().ReverseMap();
+            CreateMap<Brand, BrandWithModelsDto>().ReverseMap();
             
             CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Model, CreateModelDto>().ReverseMap();
+            CreateMap<Model, ModelWithVersionsDto>().ReverseMap();
+            CreateMap<Model, UpdateModelDto>().ReverseMap();
 
             CreateMap<Core.Model.Version, VersionDto>().ReverseMap();
             CreateMap<Core.Model.Version, CreateVersionDto>().ReverseMap();
-
-            CreateMap<Brand, BrandWithModelsDto>();
-            CreateMap<Model, ModelWithVersionsDto>();
         }
     }
 }

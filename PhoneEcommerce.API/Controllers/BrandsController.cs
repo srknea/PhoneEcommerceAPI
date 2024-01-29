@@ -57,12 +57,12 @@ namespace PhoneEcommerce.API.Controllers
             // 201 : Oluşturuldu anlamında kullanılır. İşlem başarılı ise 201 döndürülebilir.
         }
 
-        [HttpPut("{modelId}")]
-        public async Task<IActionResult> Update(int modelId, UpdateBrandDto brandDto)
+        [HttpPut("{brandId}")]
+        public async Task<IActionResult> Update(int brandId, [FromBody] UpdateBrandDto updateBrandDto)
         {
 
-            var brand = _mapper.Map<Brand>(brandDto);
-            brand.Id = modelId;
+            var brand = _mapper.Map<Brand>(updateBrandDto);
+            brand.Id = brandId;
 
             await _brandService.UpdateAsync(brand);
 
