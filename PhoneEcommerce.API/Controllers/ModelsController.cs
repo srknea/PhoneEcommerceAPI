@@ -80,5 +80,10 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(await _modelService.GetSingleModelByIdWithVersionAsync(modelId));
         }
 
+        [HttpPost("{modelId}/versions")]
+        public async Task<IActionResult> AddVersionToModel(int modelId, [FromBody] CreateVersionDto createVersionDto)
+        {
+            return CreateActionResult(await _modelService.AddVersionToModel(modelId, createVersionDto));
+        }
     }
 }
