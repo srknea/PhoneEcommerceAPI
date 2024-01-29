@@ -14,12 +14,13 @@ namespace PhoneEcommerce.Service.Mapping
         public MapProfile()
         {
             CreateMap<Brand, BrandDto>().ReverseMap();
+            CreateMap<Brand, UpdateBrandDto>().ReverseMap();
+            
             CreateMap<Model, ModelDto>().ReverseMap();
             CreateMap<Model, CreateModelDto>().ReverseMap();
 
             CreateMap<Core.Model.Version, VersionDto>().ReverseMap();
             CreateMap<Core.Model.Version, CreateVersionDto>().ReverseMap();
-
 
             CreateMap<Brand, BrandWithModelsDto>();
             CreateMap<Model, ModelWithVersionsDto>();
