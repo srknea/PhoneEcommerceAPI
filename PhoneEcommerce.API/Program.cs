@@ -38,6 +38,9 @@ builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<IModelRepository, ModelRepository>();
 builder.Services.AddScoped<IModelService, ModelService>();
 
+builder.Services.AddScoped<IVersionRepository, VersionRepository>();
+builder.Services.AddScoped<IVersionService, VersionService>();
+
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
