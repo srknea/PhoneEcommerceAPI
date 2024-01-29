@@ -1,4 +1,5 @@
-﻿using PhoneEcommerce.Core.DTOs;
+﻿using Microsoft.AspNetCore.Mvc;
+using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace PhoneEcommerce.Core.Services
     public interface IBrandService : IGenericService<Brand>
     {
         Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int brandId);
+
+        Task<CustomResponseDto<ModelDto>> AddModelToBrand(int brandId, CreateModelDto createModelDto);
     }
 }
