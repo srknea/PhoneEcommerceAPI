@@ -12,7 +12,7 @@ using PhoneEcommerce.Repository;
 namespace PhoneEcommerce.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240128160535_initial")]
+    [Migration("20240129175538_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -274,7 +274,7 @@ namespace PhoneEcommerce.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Model", b =>
@@ -485,7 +485,7 @@ namespace PhoneEcommerce.Repository.Migrations
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Order", b =>
                 {
                     b.HasOne("PhoneEcommerce.Core.Model.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -537,6 +537,11 @@ namespace PhoneEcommerce.Repository.Migrations
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Brand", b =>
                 {
                     b.Navigation("Models");
+                });
+
+            modelBuilder.Entity("PhoneEcommerce.Core.Model.Customer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Model", b =>

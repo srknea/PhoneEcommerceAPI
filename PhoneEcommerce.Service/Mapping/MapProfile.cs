@@ -28,6 +28,9 @@ namespace PhoneEcommerce.Service.Mapping
 
             CreateMap<Order, OrderDto>().ReverseMap();
             CreateMap<Order, UpdateOrderDto>().ReverseMap();
+
+            CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<Customer, CustomerWithOrdersDto>().ReverseMap();
         }
     }
 }
