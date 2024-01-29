@@ -24,6 +24,7 @@ namespace PhoneEcommerce.Service.Mapping
 
             CreateMap<Core.Model.Version, VersionDto>().ReverseMap();
             CreateMap<Core.Model.Version, CreateVersionDto>().ReverseMap();
+            CreateMap<Core.Model.Version, UpdateVersionDto>().ReverseMap();
         }
     }
 }

@@ -56,11 +56,15 @@ namespace PhoneEcommerce.API.Controllers
         }
         */
 
-        
-        [HttpPut]
-        public async Task<IActionResult> Update(VersionDto modelDto)
+
+        [HttpPut("{versionId}")]
+        public async Task<IActionResult> Update(int versionId, UpdateVersionDto updateVersionDto)
         {
-            await _versionService.UpdateAsync(_mapper.Map<Core.Model.Version>(modelDto));
+
+            var version = _mapper.Map<Core.Model.Version>(updateVersionDto);
+            version.Id = versionId;
+
+            await _versionService.UpdateAsync(version);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
