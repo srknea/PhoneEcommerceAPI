@@ -1,10 +1,14 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PhoneEcommerce.API.Extensions;
+using PhoneEcommerce.API.Filters;
 using PhoneEcommerce.API.Middlewares;
 using PhoneEcommerce.Core.Configuration;
 using PhoneEcommerce.Core.Model;
@@ -16,6 +20,7 @@ using PhoneEcommerce.Repository.Repositories;
 using PhoneEcommerce.Repository.UnitOfWork;
 using PhoneEcommerce.Service.Mapping;
 using PhoneEcommerce.Service.Services;
+using PhoneEcommerce.Service.Validations;
 using System.Reflection;
 using System.Text;
 
@@ -27,6 +32,13 @@ builder.Services.AddControllers(opt =>
 {
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     opt.Filters.Add(new AuthorizeFilter(policy));
+    opt.Filters.Add(new ValidateFilterAttribute());
+})
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<BrandDtoValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

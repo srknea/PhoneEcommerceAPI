@@ -9,6 +9,7 @@ This project aims to create a basic RESTful API supporting CRUD operations for a
 - Unit Of Work
 - Entity Framework Core
 - SQL Server
+- Fluent Validation
 - AutoMapper
 
 # Key Aspects
@@ -16,6 +17,7 @@ This project aims to create a basic RESTful API supporting CRUD operations for a
 - Authentication and Authorization (JWT)
 - Global Exception Handling
 - Custom Response
+- Filters
 
 # API Endpoint Definitions
 
