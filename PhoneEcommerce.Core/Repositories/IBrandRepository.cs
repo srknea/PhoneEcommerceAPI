@@ -9,6 +9,6 @@ namespace PhoneEcommerce.Core.Repositories
 {
     public interface IBrandRepository : IGenericRepository<Brand>
     {
-        Task<Brand> GetSingleBrandByIdWithModelAsync(int brandId);
+        Task<Brand> GetSingleBrandByIdWithModelAsync(string brandId);
     }
 }

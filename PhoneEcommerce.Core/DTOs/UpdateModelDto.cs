@@ -9,6 +9,6 @@ namespace PhoneEcommerce.Core.DTOs
     public class UpdateModelDto
     {
         public string ModelName { get; set; }
-        public int BrandId { get; set; }
+        public Guid BrandId { get; set; }
     }
 }

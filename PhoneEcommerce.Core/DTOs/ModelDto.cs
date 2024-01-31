@@ -9,6 +9,6 @@ namespace PhoneEcommerce.Core.DTOs
     public class ModelDto : BaseDto
     {
         public string ModelName { get; set; }
-        public int BrandId { get; set; }
+        public string BrandId { get; set; }
     }
 }

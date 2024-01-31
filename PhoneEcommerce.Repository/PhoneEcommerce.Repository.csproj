@@ -19,4 +19,8 @@
     <ProjectReference Include="..\PhoneEcommerce.Core\PhoneEcommerce.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+  </ItemGroup>
+
 </Project>

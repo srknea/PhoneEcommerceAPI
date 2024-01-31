@@ -10,5 +10,7 @@ namespace PhoneEcommerce.Core.Model
     public class AppUser : IdentityUser
     {
         public string DisplayName { get; set; }
+
+        public Customer Customer { get; set; }
     }
 }

@@ -9,8 +9,8 @@ namespace PhoneEcommerce.Core.Services
 {
     public interface IModelService : IGenericService<PhoneEcommerce.Core.Model.Model>
     {
-        Task<CustomResponseDto<ModelWithVersionsDto>> GetSingleModelByIdWithVersionAsync(int modelId);
+        Task<CustomResponseDto<ModelWithVersionsDto>> GetSingleModelByIdWithVersionAsync(string modelId);
 
-        Task<CustomResponseDto<VersionDto>> AddVersionToModel(int brandId, CreateVersionDto createVersionDto);
+        Task<CustomResponseDto<VersionDto>> AddVersionToModel(string brandId, CreateVersionDto createVersionDto);
     }
 }

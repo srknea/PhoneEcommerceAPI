@@ -34,7 +34,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpGet("{orderId}")]
-        public async Task<IActionResult> GetById(int orderId)
+        public async Task<IActionResult> GetById(string orderId)
         {
 
             var order = await _orderService.GetByIdAsync(orderId);
@@ -59,11 +59,11 @@ namespace PhoneEcommerce.API.Controllers
 
 
         [HttpPut("{orderId}")]
-        public async Task<IActionResult> Update(int orderId, UpdateOrderDto updateVersionDto)
+        public async Task<IActionResult> Update(string orderId, UpdateOrderDto updateVersionDto)
         {
 
             var order = _mapper.Map<Order>(updateVersionDto);
-            order.Id = orderId;
+            order.Id = Guid.Parse(orderId);
 
             await _orderService.UpdateAsync(order);
 
@@ -71,7 +71,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpDelete("{orderId}")]
-        public async Task<IActionResult> Remove(int orderId)
+        public async Task<IActionResult> Remove(string orderId)
         {
             var order = await _orderService.GetByIdAsync(orderId);
 

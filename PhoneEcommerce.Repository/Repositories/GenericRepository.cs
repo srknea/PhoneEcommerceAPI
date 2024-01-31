@@ -42,9 +42,9 @@ namespace PhoneEcommerce.Repository.Repositories
             return _dbSet.AsNoTracking().AsQueryable();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(string id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _dbSet.FindAsync(Guid.Parse(id));
         }
 
         public void Remove(T entity)

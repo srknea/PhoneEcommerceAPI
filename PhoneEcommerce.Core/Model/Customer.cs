@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,5 +17,8 @@ namespace PhoneEcommerce.Core.Model
         public string PostalCode { get; set; } // TODO: Add validation
 
         public List<Order> Orders { get; set; }
+
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

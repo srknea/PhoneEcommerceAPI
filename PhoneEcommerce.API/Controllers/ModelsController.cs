@@ -21,7 +21,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpGet("{modelId}")]
-        public async Task<IActionResult> GetById(int modelId)
+        public async Task<IActionResult> GetById(string modelId)
         {
 
             var model = await _modelService.GetByIdAsync(modelId);
@@ -32,19 +32,18 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpPut("{modelId}")]
-        public async Task<IActionResult> Update(int modelId, [FromBody] UpdateModelDto updataModelDto)
+        public async Task<IActionResult> Update(string modelId, [FromBody] UpdateModelDto updataModelDto)
         {
 
             var model = _mapper.Map<Model>(updataModelDto);
-            model.Id = modelId;
-
+            model.Id = Guid.Parse(modelId);
             await _modelService.UpdateAsync(model);
 
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
         [HttpDelete("{modelId}")]
-        public async Task<IActionResult> Remove(int modelId)
+        public async Task<IActionResult> Remove(string modelId)
         {
             var model = await _modelService.GetByIdAsync(modelId);
 
@@ -54,13 +53,13 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpGet("{modelId}/versions")]
-        public async Task<IActionResult> GetSingleModelByIdWithVersions(int modelId)
+        public async Task<IActionResult> GetSingleModelByIdWithVersions(string modelId)
         {
             return CreateActionResult(await _modelService.GetSingleModelByIdWithVersionAsync(modelId));
         }
 
         [HttpPost("{modelId}/versions")]
-        public async Task<IActionResult> AddVersionToModel(int modelId, [FromBody] CreateVersionDto createVersionDto)
+        public async Task<IActionResult> AddVersionToModel(string modelId, [FromBody] CreateVersionDto createVersionDto)
         {
             return CreateActionResult(await _modelService.AddVersionToModel(modelId, createVersionDto));
         }

@@ -2,6 +2,7 @@
 using PhoneEcommerce.Core.Repositories;
 using PhoneEcommerce.Core.Services;
 using PhoneEcommerce.Core.UnitOfWork;
+using PhoneEcommerce.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,15 +47,15 @@ namespace PhoneEcommerce.Service.Services
             return await _repository.GetAll().ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(string id)
         {
             var hasProduct = await _repository.GetByIdAsync(id);
-            /*
+            
             if (hasProduct == null)
             {
                 throw new NotFoundException($"{typeof(T).Name} not found");
             }
-            */
+            
             return hasProduct;
         }
 

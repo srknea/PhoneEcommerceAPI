@@ -9,6 +9,6 @@ namespace PhoneEcommerce.Core.Repositories
 {
     public interface IModelRepository : IGenericRepository<Core.Model.Model>
     {
-        Task<Core.Model.Model> GetSingleModelByIdWithVerisonsAsync(int modelId);
+        Task<Core.Model.Model> GetSingleModelByIdWithVerisonsAsync(string modelId);
     }
 }

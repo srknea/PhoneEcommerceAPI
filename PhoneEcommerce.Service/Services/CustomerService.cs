@@ -26,7 +26,7 @@ namespace PhoneEcommerce.Service.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<CustomResponseDto<CustomerWithOrdersDto>> GetSingleCustomerByIdWithOrdersAsync(int customerId)
+        public async Task<CustomResponseDto<CustomerWithOrdersDto>> GetSingleCustomerByIdWithOrdersAsync(string customerId)
         {
             var hasCustomer = await _customerRepository.GetByIdAsync(customerId);
 

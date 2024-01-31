@@ -27,7 +27,7 @@ namespace PhoneEcommerce.Service.Services
             _modelService = modelService;
         }
 
-        public async Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(int brandId)
+        public async Task<CustomResponseDto<BrandWithModelsDto>> GetSingleBrandByWithModelAsync(string brandId)
         {
             var hasBrand= await _brandRepository.GetByIdAsync(brandId);
 
@@ -43,7 +43,7 @@ namespace PhoneEcommerce.Service.Services
             return CustomResponseDto<BrandWithModelsDto>.Success(200, brandDto);
         }
 
-        public async Task<CustomResponseDto<ModelDto>> AddModelToBrand(int brandId, [FromBody] CreateModelDto createModelDto)
+        public async Task<CustomResponseDto<ModelDto>> AddModelToBrand(string brandId, [FromBody] CreateModelDto createModelDto)
         {
             // Belirtilen brandId'ye sahip markayı kontrol et
             var brand = await _brandRepository.GetByIdAsync(brandId);
@@ -55,7 +55,7 @@ namespace PhoneEcommerce.Service.Services
 
             // ModelDto'dan Model nesnesine dönüştürme
             var model = _mapper.Map<Model>(createModelDto);
-            model.BrandId = brandId; // Model'in bağlı olduğu marka Id'sini ayarla
+            model.BrandId = Guid.Parse(brandId); // Model'in bağlı olduğu marka Id'sini ayarla
 
             // Modeli ekleyerek işlemi gerçekleştir
             var addedModel = await _modelService.AddAsync(model);

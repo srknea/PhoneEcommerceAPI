@@ -21,7 +21,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpGet("{versionId}")]
-        public async Task<IActionResult> GetById(int versionId)
+        public async Task<IActionResult> GetById(string versionId)
         {
 
             var version = await _versionService.GetByIdAsync(versionId);
@@ -32,11 +32,11 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpPut("{versionId}")]
-        public async Task<IActionResult> Update(int versionId, UpdateVersionDto updateVersionDto)
+        public async Task<IActionResult> Update(string versionId, UpdateVersionDto updateVersionDto)
         {
 
             var version = _mapper.Map<Core.Model.Version>(updateVersionDto);
-            version.Id = versionId;
+            version.Id = Guid.Parse(versionId);
 
             await _versionService.UpdateAsync(version);
 
@@ -44,7 +44,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpDelete("{versionId}")]
-        public async Task<IActionResult> Remove(int versionId)
+        public async Task<IActionResult> Remove(string versionId)
         {
             var version = await _versionService.GetByIdAsync(versionId);
 

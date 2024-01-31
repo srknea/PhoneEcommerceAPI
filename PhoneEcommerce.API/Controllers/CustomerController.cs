@@ -19,7 +19,7 @@ namespace PhoneEcommerce.API.Controllers
         }
 
         [HttpGet("{customerId}/orders")]
-        public async Task<IActionResult> GetSingleCustomerByIdWithOrders(int customerId)
+        public async Task<IActionResult> GetSingleCustomerByIdWithOrders(string customerId)
         {
             return CreateActionResult(await _customerService.GetSingleCustomerByIdWithOrdersAsync(customerId));
         }

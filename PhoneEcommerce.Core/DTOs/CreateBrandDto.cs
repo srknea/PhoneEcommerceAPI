@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PhoneEcommerce.Core.DTOs
 {
-    public class BaseDto
+    public class CreateBrandDto
     {
-        public Guid Id { get; set; }
+        public string BrandName { get; set; }
     }
 }

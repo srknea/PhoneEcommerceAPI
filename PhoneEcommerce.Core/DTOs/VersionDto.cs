@@ -12,6 +12,6 @@ namespace PhoneEcommerce.Core.DTOs
         public decimal Price { get; set; }
         public bool StockStatus { get; set; }
 
-        public int ModelId { get; set; }
+        public Guid ModelId { get; set; }
     }
 }

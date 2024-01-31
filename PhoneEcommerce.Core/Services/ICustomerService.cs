@@ -10,6 +10,6 @@ namespace PhoneEcommerce.Core.Services
 {
     public interface ICustomerService : IGenericService<Customer>
     {
-        Task<CustomResponseDto<CustomerWithOrdersDto>> GetSingleCustomerByIdWithOrdersAsync(int modelId);
+        Task<CustomResponseDto<CustomerWithOrdersDto>> GetSingleCustomerByIdWithOrdersAsync(string modelId);
     }
 }

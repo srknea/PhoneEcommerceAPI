@@ -15,6 +15,7 @@ namespace PhoneEcommerce.Service.Mapping
         {
             CreateMap<Brand, BrandDto>().ReverseMap();
             CreateMap<Brand, UpdateBrandDto>().ReverseMap();
+            CreateMap<Brand, CreateBrandDto>().ReverseMap();
             CreateMap<Brand, BrandWithModelsDto>().ReverseMap();
             
             CreateMap<Model, ModelDto>().ReverseMap();

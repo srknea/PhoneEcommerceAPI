@@ -226,11 +226,9 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Brand", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("BrandName")
                         .IsRequired()
@@ -243,15 +241,17 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Customer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -275,19 +275,20 @@ namespace PhoneEcommerce.Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
+
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Model", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
@@ -302,14 +303,12 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -329,17 +328,15 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.OrderItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -355,54 +352,33 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VersionId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("VersionId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VersionId");
+                    b.HasIndex("VersionId")
+                        .IsUnique();
 
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("PhoneEcommerce.Core.Model.UserRefreshToken", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("Expiration")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("UserRefreshToken");
-                });
-
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Version", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -472,6 +448,17 @@ namespace PhoneEcommerce.Repository.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PhoneEcommerce.Core.Model.Customer", b =>
+                {
+                    b.HasOne("PhoneEcommerce.Core.Model.AppUser", "AppUser")
+                        .WithOne("Customer")
+                        .HasForeignKey("PhoneEcommerce.Core.Model.Customer", "AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Model", b =>
                 {
                     b.HasOne("PhoneEcommerce.Core.Model.Brand", "Brand")
@@ -516,8 +503,8 @@ namespace PhoneEcommerce.Repository.Migrations
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Product", b =>
                 {
                     b.HasOne("PhoneEcommerce.Core.Model.Version", "Version")
-                        .WithMany("Products")
-                        .HasForeignKey("VersionId")
+                        .WithOne("Product")
+                        .HasForeignKey("PhoneEcommerce.Core.Model.Product", "VersionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -533,6 +520,12 @@ namespace PhoneEcommerce.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("PhoneEcommerce.Core.Model.AppUser", b =>
+                {
+                    b.Navigation("Customer")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Brand", b =>
@@ -557,7 +550,8 @@ namespace PhoneEcommerce.Repository.Migrations
 
             modelBuilder.Entity("PhoneEcommerce.Core.Model.Version", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Product")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

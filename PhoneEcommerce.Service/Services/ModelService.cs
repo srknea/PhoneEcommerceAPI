@@ -27,7 +27,7 @@ namespace PhoneEcommerce.Service.Services
             _versionService = versionService;
         }
 
-        public async Task<CustomResponseDto<ModelWithVersionsDto>> GetSingleModelByIdWithVersionAsync(int modelId)
+        public async Task<CustomResponseDto<ModelWithVersionsDto>> GetSingleModelByIdWithVersionAsync(string modelId)
         {
             var hasModel = await _modelRepository.GetByIdAsync(modelId);
 
@@ -43,7 +43,7 @@ namespace PhoneEcommerce.Service.Services
             return CustomResponseDto<ModelWithVersionsDto>.Success(200, modelDto);
         }
 
-        public async Task<CustomResponseDto<VersionDto>> AddVersionToModel(int modelId, CreateVersionDto createVersionDto)
+        public async Task<CustomResponseDto<VersionDto>> AddVersionToModel(string modelId, CreateVersionDto createVersionDto)
         {
             var model = await _modelRepository.GetByIdAsync(modelId);
 
@@ -54,7 +54,7 @@ namespace PhoneEcommerce.Service.Services
 
             
             var version = _mapper.Map<Core.Model.Version>(createVersionDto);
-            version.ModelId = modelId;
+            version.ModelId = Guid.Parse(modelId);
 
             
             var addedVersion = await _versionService.AddAsync(version);

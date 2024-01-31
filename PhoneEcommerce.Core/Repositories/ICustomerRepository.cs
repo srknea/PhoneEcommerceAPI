@@ -9,6 +9,6 @@ namespace PhoneEcommerce.Core.Repositories
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        Task<Customer> GetSingleCustomerByIdWithOrdersAsync(int customerId);
+        Task<Customer> GetSingleCustomerByIdWithOrdersAsync(string customerId);
     }
 }
