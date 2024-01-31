@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
@@ -7,6 +8,7 @@ using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
+    [AllowAnonymous]
     public class OrdersController : CustomBaseController
     {
         private readonly IOrderService _orderService;
@@ -31,11 +33,11 @@ namespace PhoneEcommerce.API.Controllers
 
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{orderId}")]
+        public async Task<IActionResult> GetById(int orderId)
         {
 
-            var order = await _orderService.GetByIdAsync(id);
+            var order = await _orderService.GetByIdAsync(orderId);
 
             var orderDto = _mapper.Map<OrderDto>(order);
 
@@ -68,10 +70,10 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> Remove(int orderId)
         {
-            var order = await _orderService.GetByIdAsync(id);
+            var order = await _orderService.GetByIdAsync(orderId);
 
             await _orderService.RemoveAsync(order);
 

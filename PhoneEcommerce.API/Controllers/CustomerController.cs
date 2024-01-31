@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
@@ -7,6 +8,7 @@ using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
+    [AllowAnonymous]
     public class CustomerController : CustomBaseController
     {
         private readonly ICustomerService _customerService;

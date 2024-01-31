@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
@@ -7,6 +8,7 @@ using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
+    [AllowAnonymous]
     public class ModelsController : CustomBaseController
     {
         private readonly IModelService _modelService;
@@ -18,43 +20,16 @@ namespace PhoneEcommerce.API.Controllers
             _mapper = mapper;
         }
 
-        /*
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("{modelId}")]
+        public async Task<IActionResult> GetById(int modelId)
         {
 
-            var models = await _modelService.GetAllAsync();
-
-            var modelsDto = _mapper.Map<List<ModelDto>>(models.ToList());
-
-            return CreateActionResult(CustomResponseDto<List<ModelDto>>.Success(200, modelsDto));
-
-        }
-        */
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-
-            var model = await _modelService.GetByIdAsync(id);
+            var model = await _modelService.GetByIdAsync(modelId);
 
             var modelDto = _mapper.Map<ModelDto>(model);
 
             return CreateActionResult(CustomResponseDto<ModelDto>.Success(200, modelDto));
         }
-
-        /*
-        [HttpPost]
-        public async Task<IActionResult> Save(ModelDto dto)
-        {
-            var model = await _modelService.AddAsync(_mapper.Map<Model>(dto));
-
-            var modelDto = _mapper.Map<ModelDto>(model);
-
-            return CreateActionResult(CustomResponseDto<ModelDto>.Success(201, modelDto));
-            // 201 : Oluşturuldu anlamında kullanılır. İşlem başarılı ise 201 döndürülebilir.
-        }
-        */
 
         [HttpPut("{modelId}")]
         public async Task<IActionResult> Update(int modelId, [FromBody] UpdateModelDto updataModelDto)
@@ -68,10 +43,10 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        [HttpDelete("{modelId}")]
+        public async Task<IActionResult> Remove(int modelId)
         {
-            var model = await _modelService.GetByIdAsync(id);
+            var model = await _modelService.GetByIdAsync(modelId);
 
             await _modelService.RemoveAsync(model);
 

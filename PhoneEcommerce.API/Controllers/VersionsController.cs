@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
 using PhoneEcommerce.Core.Model;
@@ -7,6 +8,7 @@ using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
+    [AllowAnonymous]
     public class VersionsController : CustomBaseController
     {
         private readonly IVersionService _versionService;
@@ -18,44 +20,16 @@ namespace PhoneEcommerce.API.Controllers
             _versionService = versionService;
         }
 
-        /*
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("{versionId}")]
+        public async Task<IActionResult> GetById(int versionId)
         {
 
-            var models = await _modelService.GetAllAsync();
-
-            var modelsDto = _mapper.Map<List<ModelDto>>(models.ToList());
-
-            return CreateActionResult(CustomResponseDto<List<ModelDto>>.Success(200, modelsDto));
-
-        }
-        */
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-
-            var version = await _versionService.GetByIdAsync(id);
+            var version = await _versionService.GetByIdAsync(versionId);
 
             var versionDto = _mapper.Map<VersionDto>(version);
 
             return CreateActionResult(CustomResponseDto<VersionDto>.Success(200, versionDto));
         }
-
-        /*
-        [HttpPost]
-        public async Task<IActionResult> Save(ModelDto dto)
-        {
-            var model = await _modelService.AddAsync(_mapper.Map<Model>(dto));
-
-            var modelDto = _mapper.Map<ModelDto>(model);
-
-            return CreateActionResult(CustomResponseDto<ModelDto>.Success(201, modelDto));
-            // 201 : Oluşturuldu anlamında kullanılır. İşlem başarılı ise 201 döndürülebilir.
-        }
-        */
-
 
         [HttpPut("{versionId}")]
         public async Task<IActionResult> Update(int versionId, UpdateVersionDto updateVersionDto)
@@ -69,10 +43,10 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        [HttpDelete("{versionId}")]
+        public async Task<IActionResult> Remove(int versionId)
         {
-            var version = await _versionService.GetByIdAsync(id);
+            var version = await _versionService.GetByIdAsync(versionId);
 
             await _versionService.RemoveAsync(version);
 

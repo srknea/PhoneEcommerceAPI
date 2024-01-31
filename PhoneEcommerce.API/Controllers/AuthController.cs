@@ -11,12 +11,12 @@ namespace Reactivities.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly TokenService _tokenService;
 
-        public AccountController(UserManager<AppUser> userManager, TokenService tokenService)
+        public AuthController(UserManager<AppUser> userManager, TokenService tokenService)
         {
             _userManager = userManager;
             _tokenService = tokenService;
@@ -78,7 +78,7 @@ namespace Reactivities.API.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("user")]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PhoneEcommerce.Core.DTOs;
@@ -8,6 +9,7 @@ using PhoneEcommerce.Service.Services;
 
 namespace PhoneEcommerce.API.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : CustomBaseController
@@ -35,11 +37,11 @@ namespace PhoneEcommerce.API.Controllers
 
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{brandId}")]
+        public async Task<IActionResult> GetById(int brandId)
         {
 
-            var brand = await _brandService.GetByIdAsync(id);
+            var brand = await _brandService.GetByIdAsync(brandId);
 
             var brandDto = _mapper.Map<BrandDto>(brand);
 
@@ -69,10 +71,10 @@ namespace PhoneEcommerce.API.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
+        [HttpDelete("{brandId}")]
+        public async Task<IActionResult> Remove(int brandId)
         {
-            var brand = await _brandService.GetByIdAsync(id);
+            var brand = await _brandService.GetByIdAsync(brandId);
 
             await _brandService.RemoveAsync(brand);
 
