@@ -95,5 +95,33 @@ namespace Reactivities.API.Controllers
                 UserName = user.UserName
             };
         }
+
+        [Authorize]
+        [HttpPut("user")]
+        public async Task<ActionResult<UserDto>> UpdateCurrentUser(UpdateUserDto userUpdateDto)
+        {
+            var userEmail = User.FindFirstValue(ClaimTypes.Email);
+            var user = await _userManager.FindByEmailAsync(userEmail);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            // User property'lerini güncelle
+            user.DisplayName = userUpdateDto.DisplayName;
+            user.UserName = userUpdateDto.UserName;
+            
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                //Eğer güncelleme başarılı ise güncellenmiş User bilgisini döndür.
+                return CreateObjectUser(user);
+            }
+
+            // Eğer güncelleme başarısız olursa hataları döndür.
+            return BadRequest(result.Errors);
+        }
     }
 }
