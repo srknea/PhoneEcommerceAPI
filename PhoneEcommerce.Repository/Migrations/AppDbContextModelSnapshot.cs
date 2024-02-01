@@ -348,10 +348,6 @@ namespace PhoneEcommerce.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("VersionId")
                         .HasColumnType("uniqueidentifier");
 

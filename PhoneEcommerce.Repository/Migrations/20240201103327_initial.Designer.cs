@@ -12,7 +12,7 @@ using PhoneEcommerce.Repository;
 namespace PhoneEcommerce.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240201100459_initial")]
+    [Migration("20240201103327_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -350,10 +350,6 @@ namespace PhoneEcommerce.Repository.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("VersionId")
                         .HasColumnType("uniqueidentifier");

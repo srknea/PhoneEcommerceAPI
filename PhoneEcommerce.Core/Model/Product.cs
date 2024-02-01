@@ -8,8 +8,6 @@ namespace PhoneEcommerce.Core.Model
 {
     public class Product : BaseEntity
     {
-        public string Color { get; set; }
-
         public Guid VersionId { get; set; }
         public Version Version { get; set; }
 

@@ -18,13 +18,15 @@ namespace PhoneEcommerce.Service.Services
     {
         private readonly IModelRepository _modelRepository;
         private readonly IVersionService _versionService;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ModelService(IGenericRepository<Model> repository, IUnitOfWork unitOfWork, IModelRepository modelRepository, IMapper mapper, IVersionService versionService) : base(repository, unitOfWork)
+        public ModelService(IGenericRepository<Model> repository, IUnitOfWork unitOfWork, IModelRepository modelRepository, IMapper mapper, IVersionService versionService, IProductService productService) : base(repository, unitOfWork)
         {
             _modelRepository = modelRepository;
             _mapper = mapper;
             _versionService = versionService;
+            _productService = productService;
         }
 
         public async Task<CustomResponseDto<ModelWithVersionsDto>> GetSingleModelByIdWithVersionAsync(string modelId)
@@ -56,10 +58,19 @@ namespace PhoneEcommerce.Service.Services
             var version = _mapper.Map<Core.Model.Version>(createVersionDto);
             version.ModelId = Guid.Parse(modelId);
 
-            
             var addedVersion = await _versionService.AddAsync(version);
 
-            
+            // Product oluştur
+            var newProduct = new Product
+            {
+                VersionId = addedVersion.Id,
+                Version = addedVersion
+            };
+
+            // ProductService ile Product'ı ekleme
+            await _productService.AddAsync(newProduct);
+
+
             var addedVersionDto = _mapper.Map<VersionDto>(addedVersion);
 
             return CustomResponseDto<VersionDto>.Success(201, addedVersionDto);

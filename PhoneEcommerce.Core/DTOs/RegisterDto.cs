@@ -24,6 +24,6 @@ namespace PhoneEcommerce.Core.DTOs
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
-        public string PostalCode { get; set; } // TODO: Add validation
+        public string PostalCode { get; set; }
     }
 }

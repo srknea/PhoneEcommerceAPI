@@ -257,7 +257,6 @@ namespace PhoneEcommerce.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VersionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
