@@ -62,6 +62,18 @@ namespace Reactivities.API.Controllers
                 UserName = registerDto.UserName
             };
 
+            // Customer bilgilerini alarak bir Customer nesnesi oluşturma
+            var customer = new Customer
+            {
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
+                Address = registerDto.Address,
+                PostalCode = registerDto.PostalCode
+            };
+
+            // AppUser'ı oluşturulan müşteri ile ilişkilendir
+            user.Customer = customer;
+
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (result.Succeeded)

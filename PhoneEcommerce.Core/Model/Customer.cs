@@ -11,8 +11,6 @@ namespace PhoneEcommerce.Core.Model
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; } // TODO: Add validation
-        public string PhoneNumber { get; set; } // TODO: Add validation
         public string Address { get; set; }
         public string PostalCode { get; set; } // TODO: Add validation
 

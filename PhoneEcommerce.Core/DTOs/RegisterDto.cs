@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhoneEcommerce.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,11 @@ namespace PhoneEcommerce.Core.DTOs
         public string DisplayName { get; set; }
         [Required]
         public string UserName { get; set; }
+
+        // Customer
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string PostalCode { get; set; } // TODO: Add validation
     }
 }

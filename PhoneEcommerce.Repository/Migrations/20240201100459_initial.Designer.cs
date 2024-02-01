@@ -12,7 +12,7 @@ using PhoneEcommerce.Repository;
 namespace PhoneEcommerce.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240131154427_initial")]
+    [Migration("20240201100459_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -256,19 +256,11 @@ namespace PhoneEcommerce.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
