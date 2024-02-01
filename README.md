@@ -73,3 +73,7 @@ This project aims to create a basic RESTful API supporting CRUD operations for a
 | `POST`| `/auth/register` | Register a new user. | 
 | `GET`| `/auth/user` | Get information of the logged-in user. | 
 | `PUT`| `/auth/user` | Update information of the logged-in user. | 
+
+# Database Diagrams
+
+![DatabaseDiagram](https://www.serkanisik.com/wp-content/uploads/2024/02/phoneEcommerce.png)
