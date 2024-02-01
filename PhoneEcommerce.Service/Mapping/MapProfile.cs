@@ -28,6 +28,7 @@ namespace PhoneEcommerce.Service.Mapping
             CreateMap<Core.Model.Version, UpdateVersionDto>().ReverseMap();
 
             CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<Order, UpdateOrderDto>().ReverseMap();
             CreateMap<Order, OrderWithOrderItemsDto>().ReverseMap();
             CreateMap<Order, CreateOrderDto>().ReverseMap();
             CreateMap<OrderItem, OrderItemDto>().ReverseMap();
