@@ -27,9 +27,9 @@ namespace PhoneEcommerce.API.Controllers
 
             var orders = await _orderService.GetAllAsync();
 
-            var ordersDto = _mapper.Map<List<OrderDto>>(orders.ToList());
+            var ordersDto = _mapper.Map<List<OrderWithOrderItemsDto>>(orders.ToList());
 
-            return CreateActionResult(CustomResponseDto<List<OrderDto>>.Success(200, ordersDto));
+            return CreateActionResult(CustomResponseDto<List<OrderWithOrderItemsDto>>.Success(200, ordersDto));
 
         }
 
@@ -39,24 +39,20 @@ namespace PhoneEcommerce.API.Controllers
 
             var order = await _orderService.GetByIdAsync(orderId);
 
-            var orderDto = _mapper.Map<OrderDto>(order);
+            var orderDto = _mapper.Map<OrderWithOrderItemsDto>(order);
 
-            return CreateActionResult(CustomResponseDto<OrderDto>.Success(200, orderDto));
+            return CreateActionResult(CustomResponseDto<OrderWithOrderItemsDto>.Success(200, orderDto));
         }
 
-        /*
+
         [HttpPost]
-        public async Task<IActionResult> Save(ModelDto dto)
+        public async Task<IActionResult> Create(CreateOrderDto createOrderDto)
         {
-            var model = await _modelService.AddAsync(_mapper.Map<Model>(dto));
-
-            var modelDto = _mapper.Map<ModelDto>(model);
-
-            return CreateActionResult(CustomResponseDto<ModelDto>.Success(201, modelDto));
-            // 201 : Oluşturuldu anlamında kullanılır. İşlem başarılı ise 201 döndürülebilir.
+            var order = _mapper.Map<Order>(createOrderDto);
+            var createdOrder = await _orderService.AddAsync(order);
+            var createdOrderDto = _mapper.Map<OrderWithOrderItemsDto>(createdOrder);
+            return CreateActionResult(CustomResponseDto<OrderWithOrderItemsDto>.Success(201, createdOrderDto));
         }
-        */
-
 
         [HttpPut("{orderId}")]
         public async Task<IActionResult> Update(string orderId, UpdateOrderDto updateVersionDto)

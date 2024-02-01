@@ -8,6 +8,6 @@ namespace PhoneEcommerce.Core.DTOs
 {
     public class CustomerWithOrdersDto : CustomerDto
     {
-        public List<OrderDto> Orders { get; set; }
+        public List<OrderWithOrderItemsDto> Orders { get; set; }
     }
 }
